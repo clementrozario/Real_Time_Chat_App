@@ -22,7 +22,7 @@ app.use(cors({
 
 
 app.use("/api/auth",authRoutes);
-app.use("api/message",mesaageRoutes);
+app.use("/api/messages",mesaageRoutes);
 
 
 app.listen(PORT, () => {
