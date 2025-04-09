@@ -102,7 +102,7 @@ export const updateProfile = async(req,res) =>{
             _id: updatedUser._id,
             fullName: updatedUser.fullName,
             email: updatedUser.email,
-            profilepic: updatedUser.profilepic, 
+            profilePic: updatedUser.profilepic, 
         })
     }catch(error){
         console.log("error in update profile:",error)
