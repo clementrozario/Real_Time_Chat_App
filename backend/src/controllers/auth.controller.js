@@ -1,4 +1,3 @@
-import { error } from "console";
 import cloudinary from "../lib/cloudinary.js";
 import { generateToken } from "../lib/utils.js";
 import User from "../models/user.model.js";
@@ -63,7 +62,7 @@ export const login = async (req,res) => {
             _id:user._id,
             fullName:user.fullName,
             email:user.email,
-            profilePic:user.profilepic,
+            profilePic:user.profilePic,
         })
     }catch(error){
         console.log("Error in login controller",error.message);
@@ -84,15 +83,15 @@ export const logout = (req,res) => {
 
 export const updateProfile = async(req,res) =>{
     try{
-        const {profilepic} = req.body;
+        const {profilePic} = req.body;
         const userId = req.user._id;
 
-        if(!profilepic){
+        if(!profilePic){
             return res.status(400).json({message:"profile pic is required"});
         }
 
-        const uploadResponse = await cloudinary.uploader.upload(profilepic)
-        const updatedUser = await User.findByIdAndUpdate(userId,{profilepic:uploadResponse.secure_url},{new:true})
+        const uploadResponse = await cloudinary.uploader.upload(profilePic)
+        const updatedUser = await User.findByIdAndUpdate(userId,{profilePic:uploadResponse.secure_url},{new:true})
 
         if (!updatedUser) {
             return res.status(404).json({ message: "User not found" });
@@ -102,7 +101,7 @@ export const updateProfile = async(req,res) =>{
             _id: updatedUser._id,
             fullName: updatedUser.fullName,
             email: updatedUser.email,
-            profilePic: updatedUser.profilepic, 
+            profilePic: updatedUser.profilePic, 
         })
     }catch(error){
         console.log("error in update profile:",error)
